@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme" content="hugo-tachyons">
+    <meta name="generator" content="Hugo 0.16" />
+    <meta name="author" content="goopyflux">
+
+    
+    <link
+href="https://fonts.googleapis.com/css?family=Space+Mono|Cutive+Mono" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://goopyflux.github.io/manifest-demo/css/normalize.css">
+    <link rel="stylesheet" href="https://goopyflux.github.io/manifest-demo/css/tachyons.min.css">
+    
+
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <link rel="shortcut icon" href="https://goopyflux.github.io/manifest-demo/img/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://goopyflux.github.io/manifest-demo/post/managing-content/">
+
+    <title>Managing content | Manifest</title>
+
+    
+    <style>
+        body {
+	  font-family: 'Avenir Next';
+	  background: #F4F4F4;
+	}
+	code {
+	  font-family: 'Cutive Mono','Space Mono';
+	  font-size: 1.25rem;
+	  line-height: 1.25;
+	}
+    </style>
+
+</head>
+
+
+    <body class="">
+    
+<nav class="db dt-l w-100 border-box pa3 pa4-ns">
+
+<a class="db dtc-l v-mid link black-80 dim f4 f2-ns w-100 w-25-l tc tl-l mb2 mb0-l fw5" href="https://goopyflux.github.io/manifest-demo/">Manifest
+  </a>
+
+  <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+  
+  <a class="link dim dark-gray f5 f3-ns dib mr3 mr4-l fw5" href="https://goopyflux.github.io/manifest-demo/post/">Posts</a>
+  
+  <a class="link dim dark-gray f5 f3-ns dib mr3 mr4-l fw5" href="https://goopyflux.github.io/manifest-demo/project/">Projects</a>
+  
+  <a class="link dim dark-gray f5 f3-ns dib mr3 mr4-l fw5" href="https://goopyflux.github.io/manifest-demo/publication/">Publications</a>
+  
+  <a class="link dim dark-gray f5 f3-ns dib mr3 mr4-l fw5" href="https://goopyflux.github.io/manifest-demo/home/about">About</a>
+  
+  </div>
+</nav>
+
+        <article class="mw7 center pa3 pa4-ns">
+	    <h1 class="f2 f-5-ns fw5 mt0 mb2 pb2 black-80">Managing content</h1>
+	    <div class="f5 f4-ns fw5 lh-title black-80">
+	    
+
+<p>This is a brief guide to managing content with the Academic theme. Content can include homepage sections, publications, projects, and news/blog articles. After you have read this guide about creating and managing content, you may also be interested to learn about <a href="https://goopyflux.github.io/manifest-demo/post/writing-markdown-latex/">writing content with Markdown, LaTeX, and Shortcodes</a>.</p>
+
+<p>To enable LaTeX math rendering for a page, you should include <code>math = true</code> in the page&rsquo;s <code>+++</code> preamble, as demonstrated in the included example site. Otherwise, to enable math on the homepage or for all pages, you must globally set <code>math = true</code> in <code>config.toml</code>.</p>
+
+<p>To display an image in publication, post, or project page headers, you can include the <code>image = &quot;my-image.jpg&quot;</code> option in the page <code>+++</code> preamble. It is automatically assumed that the image is located in your <code>static/img/</code> folder. In the context of posts and projects, the image is intended to behave as a full width banner across the top of the article.</p>
+
+<h2 id="homepage-sections">Homepage sections</h2>
+
+<p>Homepage sections for publications, projects and posts will automatically hide when there is no content of the respective type. Therefore, if you do not require a particular feature, you can simply delete any associated content in the <code>content/</code> folder.</p>
+
+<h3 id="introduce-yourself-with-a-biography">Introduce yourself with a biography</h3>
+
+<p>Place a cropped portrait photo named <code>portrait.jpg</code> into the <code>static/img/</code> folder, overwriting any defaults.</p>
+
+<p>Edit your biography in the example <code>content/home/about.md</code> file that you copied across from the <code>themes/academic/exampleSite/</code> folder. The research interests and qualifications are stored separately as <code>interests</code> and <code>education</code> variables under <code>[params.about]</code> in <code>config.toml</code>, as can be seen in the example config. It&rsquo;s possible to completely hide the interests and education lists by deleting their respective variables.</p>
+
+<h3 id="add-a-section-to-the-homepage">Add a section to the homepage</h3>
+
+<p>To add a new section to the homepage:</p>
+
+<pre><code class="language-bash">    hugo new home/my-section-name.md
+</code></pre>
+
+<p>Then edit the newly created file <code>content/home/my-section-name.md</code> with your section title and content. In the <code>+++</code> preamble, you should also increment the <code>section_id</code> to ensure it&rsquo;s unique amongst the other sections in <code>content/home</code> and you can adjust <code>weight</code> variable to change the order within the custom section of the home page.</p>
+
+<p>You may also wish to add a navigation link pointing to the new section. This can be achieved by adding something similar to the following lines to your <code>config.toml</code>, where the URL will consist of the first title word in lowercase:</p>
+
+<pre><code>    [[menu.main]]
+        name = &quot;Research&quot;
+        url = &quot;#research&quot;
+        weight = 10
+</code></pre>
+
+<h2 id="create-a-publication">Create a publication</h2>
+
+<p>To create a new publication:</p>
+
+<pre><code>hugo new publication/my-paper-name.md
+</code></pre>
+
+<p>Then edit the default variables at the top of <code>content/publication/my-paper-name.md</code> to include the details of your publication. The <code>url_</code> variables are used to generate links associated with your publication, such as for viewing PDFs of papers. Here is an example:</p>
+
+<pre><code>+++
+abstract = &quot;An abstract...&quot;
+authors = [&quot;First author's name&quot;, &quot;Second author's name&quot;]
+date = &quot;2013-07-01&quot;
+image = &quot;&quot;
+image_preview = &quot;&quot;
+math = false
+publication = &quot;The publishing part of the citation goes here. You may use *Markdown* for italics etc.&quot;
+title = &quot;A publication title, such as title of a paper&quot;
+url_code = &quot;&quot;
+url_dataset = &quot;&quot;
+url_pdf = &quot;pdf/my-paper-name.pdf&quot;
+url_project = &quot;&quot;
+url_slides = &quot;&quot;
+url_video = &quot;&quot;
++++
+
+Further details on your publication can be written here using *Markdown* for formatting. This text will be displayed on the Publication Detail page.
+</code></pre>
+
+<p>The <code>url_</code> links can either point to local or web content. Associated local publication content, such as PDFs, may be copied to a <code>static/pdf/</code> folder and referenced like <code>url_pdf = &quot;pdf/my-paper-name.pdf&quot;</code>.</p>
+
+<p>You can also associate custom link buttons with the publication by adding the following block(s) within the variable preamble above, which is denoted by <code>+++</code>:</p>
+
+<pre><code>[[url_custom]]
+    name = &quot;Custom Link&quot;
+    url = &quot;http://www.example.org&quot;
+</code></pre>
+
+<p>If you enabled <code>detailed_list</code> for publications in <code>config.toml</code>, then there are a few more optional variables that you can include in the publication page preamble. You may use <code>abstract_short = &quot;friendly summary of abstract&quot;</code> and <code>publication_short = &quot;abbreviated publication details&quot;</code> to display a friendly summary of the abstract and abbreviate the publication details, respectively. Furthermore, there is the option to display a different image on the homepage to the publication detail page by setting <code>image_preview = &quot;my-image.jpg&quot;</code>. This can be useful if you wish to scale down the image for the homepage or simply if you just wish to show a different image for the preview.</p>
+
+<h2 id="post-an-article">Post an article</h2>
+
+<p>To create a blog/news article:</p>
+
+<pre><code>hugo new post/my-article-name.md
+</code></pre>
+
+<p>Then edit the newly created file <code>content/post/my-article-name.md</code> with your full title and content.</p>
+
+<h2 id="create-a-project">Create a project</h2>
+
+<p>To create a project:</p>
+
+<pre><code>hugo new project/my-project-name.md
+</code></pre>
+
+<p>Then edit the newly created file <code>content/project/my-project-name.md</code>. Either you can link the project to an external project website by setting the <code>external_link = &quot;http://external-project.com&quot;</code> variable at the top of the file, or you can add content (below the final <code>+++</code>) in order to render a project page on your website.</p>
+
+<h2 id="removing-content">Removing content</h2>
+
+<p>Generally, to remove content, simply delete the relevant file from your <code>content/post</code>, <code>content/publication</code>, <code>content/project</code>, or <code>content/home</code> folder.</p>
+
+<h2 id="view-your-updated-site">View your updated site</h2>
+
+<p>After you have made changes to your site, you can view it by running the <code>hugo server --watch</code> command and then opening <a href="http://localhost:1313">localhost:1313</a> in your web browser.</p>
+
+<h2 id="deploy-your-site">Deploy your site</h2>
+
+<p>Finally, you can build the static website to a <code>public/</code> folder ready for deployment using the <code>hugo</code> command.</p>
+
+<p>You may then deploy your site by copying the <code>public/</code> directory (by FTP, SFTP, WebDAV, Rsync, git push, etc.) to your production web server.</p>
+
+<p>Note that running <code>hugo</code> does not remove any previously generated files before building. Therefore, it&rsquo;s best practice to delete your <code>public/</code> directory prior to running <code>hugo</code> to ensure no old or interim files are deployed to your server.</p>
+
+	    </div>
+	</article>
+    <footer class="pv4 ph3 ph5-ns tc black-80">
+  <a class="link dim gray dib h2 w2 br-100 mr3 pa2 bg-near-white ba b--black-10" href="#" title="">
+    <svg data-icon="facebook" viewBox="0 0 32 32" style="fill:currentcolor">
+      <title>facebook icon</title>
+      <path d="M8 12 L13 12 L13 8 C13 2 17 1 24 2 L24 7 C20 7 19 7 19 10 L19 12 L24 12 L23 18 L19 18 L19 30 L13 30 L13 18 L8 18 z"></path>
+    </svg>
+  </a>
+  <a class="link dim gray dib h2 w2 br-100 mr3 pa2 bg-near-white ba b--black-10" href="#" title="">
+    <svg data-icon="twitter" viewBox="0 0 32 32" style="fill:currentcolor">
+      <title>twitter icon</title>
+      <path d="M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4"></path>
+    </svg>
+  </a>
+  <a class="link dim gray dib br-100 h2 w2 mr3 pa2 bg-near-white ba b--black-10" href="#" title="">
+    <svg data-icon="github" viewBox="0 0 32 32" style="fill:currentcolor">
+      <title>github icon</title>
+      <path d="M0 18 C0 12 3 10 3 9 C2.5 7 2.5 4 3 3 C6 3 9 5 10 6 C12 5 14 5 16 5 C18 5 20 5 22 6 C23 5 26 3 29 3 C29.5 4 29.5 7 29 9 C29 10 32 12 32 18 C32 25 30 30 16 30 C2 30 0 25 0 18 M3 20 C3 24 4 28 16 28 C28 28 29 24 29 20 C29 16 28 14 16 14 C4 14 3 16 3 20 M8 21 A1.5 2.5 0 0 0 13 21 A1.5 2.5 0 0 0 8 21 M24 21 A1.5 2.5 0 0 0 19 21 A1.5 2.5 0 0 0 24 21 z"></path>
+    </svg>
+  </a>
+  <a class="link dim gray dib br-100 h2 w2 mr3 pa2 bg-near-white ba b--black-10" href="#" title="">
+    <svg data-icon="dribbble" viewBox="0 0 32 32" style="fill:currentcolor">
+      <title>dribbble icon</title>
+      <path d="M16 0 A16 16 0 0 0 0 16 A16 16 0 0 0 16 32 A16 16 0 0 0 32 16 A16 16 0 0 0 16 0 M5 11.5 A12 12 0 0 1 11 5 A46 46 0 0 1 13.5 9.25 A46 46 0 0 1 5 11.5 M15 4 A12 12 0 0 1 21.5 5.25 A46 46 0 0 1 17 7.75 A50 50 0 0 0 15 4 M4 16 A50 50 0 0 0 15 13 A46 46 0 0 1 16 15.5 A26 26 0 0 0 6 22.5 A12 12 0 0 1 4 16 M18.5 11.5 A50 50 0 0 0 25 8 A12 12 0 0 1 28 13.75 A26 26 0 0 0 19.75 14.5 A50 50 0 0 0 18.5 11.5 M17 19.5 A46 46 0 0 1 18 28 A12 12 0 0 1 8.75 25.5 A22 22 0 0 1 17 19.5 M20.75 18.25 A22 22 0 0 1 28 17.75 A12 12 0 0 1 22 26.5 A50 50 0 0 0 20.75 18.25"></path>
+    </svg>
+  </a>
+  <small class="mt3 f6 db tc black-80 fw5">© 2016 <b class="ttu">SOME COMPANY Inc</b>., All Rights Reserved</small>
+  <div class="tc mt3 f6 fw5"> 
+      <a href="/language/" title="Language" class="dib ph2 link black-80 dim">Language</a>
+      <a href="/terms/"    title="Terms" class="dib ph2 link black-80 dim">Terms of Use</a>
+      <a href="/privacy/"  title="Privacy" class="dib ph2 link black-80 dim">Privacy</a>
+    </div>
+</footer>
+
+    </body>
+</html>
+
